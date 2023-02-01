@@ -1,0 +1,19 @@
+{
+  "name": "blockchain-example",
+  "version": "1.0.0",
+  "scripts": {
+    "mine": "node blockchain-miner",
+    "secure": "node blockchain-secure-data",
+    "smart": "node blockchain-smart-contract",
+    "test": "mocha"
+  },
+  "author": "Trevor Ranney",
+  "dependencies": {
+    "crypto-js": "^4.1.1",
+    "object-hash": "^3.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^10.2.0"
+  },
+  "description": "A blockchain example"
+}
