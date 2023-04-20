@@ -1,16 +1,15 @@
-var CryptoJS = require("crypto-js");
 var Blockchain = require('./blockchain');
 var Block = require('./block');
 
 // Create the blockchain
-var genesisBlock = Block(0, '0');
+var genesisBlock = Block('genesis');
 var blockchain = Blockchain(genesisBlock);
 
 // Write some code to be placed on the chain
 var contract = `console.log('This is a javascript smart contract ;)');`;
 
-// Create a Block using the hash of the last/current block in the blockchain and the BlockData
-var contractBlock = Block(blockchain.getCurrentHash(), contract);
+// Create a Block using the hash of the last block in the blockchain
+var contractBlock = Block(contract, blockchain.getCurrentBlock() );
 
 // Add it to the blockchain
 blockchain.addBlock(contractBlock);

@@ -1,10 +1,13 @@
 var blockchain = (genesisBlock) => {
     var blocks = {};
+    var currentBlock = genesisBlock;
     var currentHash = genesisBlock.getBlockHash();
-
     blocks[currentHash] = genesisBlock;
 
     return {
+        getCurrentBlock: () => {
+            return currentBlock;
+        },
         getCurrentHash: () => {
             return currentHash;
         },
@@ -12,12 +15,13 @@ var blockchain = (genesisBlock) => {
             return blocks[hash];
         },
         addBlock : (block) => {
-            if(currentHash === block.getPreviousHash() ){
+            if(currentHash === block.previousBlock.getBlockHash() ){
+                currentBlock = block;
                 currentHash = block.getBlockHash();
                 blocks[currentHash] = block;
             }
             else{
-                throw('The new block hash does not match the current hash. Call getCurrentHash.');
+                throw('Invalid Block');
             }
         }
     };

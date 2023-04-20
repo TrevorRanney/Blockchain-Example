@@ -3,7 +3,7 @@ var Blockchain = require('./blockchain');
 var Block = require('./block');
 
 // Create the blockchain
-var genesisBlock = Block(0, '0');
+var genesisBlock = Block('genesis');
 var blockchain = Blockchain(genesisBlock);
 
 // Create sample data and a super strong key
@@ -16,7 +16,7 @@ var secretKey = 'secret key 123';
 var encryptedData = CryptoJS.AES.encrypt(data, secretKey);
 
 // Create a Block using the hash of the last/current block in the blockchain and the BlockData 
-var encryptedBlock = Block(blockchain.getCurrentHash(), encryptedData);
+var encryptedBlock = Block(encryptedData, blockchain.getCurrentBlock() );
 
 // Add it to the blockchain
 blockchain.addBlock(encryptedBlock);
